@@ -1,0 +1,437 @@
+/* ================================================================
+   deco.css  — decorative enhancement layer
+   Drop a <link rel="stylesheet" href="deco.css"> before </head>
+   ================================================================ */
+
+/* ──────────────────────────────────────────
+   LANDING — shimmer pulse on the gradient title
+   ────────────────────────────────────────── */
+.landing-title {
+  background-size: 200% auto;
+  animation: titleShimmer 4s linear infinite;
+}
+@keyframes titleShimmer {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Subtle heartbeat on the landing sub-text */
+.landing-sub {
+  animation: landingSubFade 3s ease-in-out infinite;
+}
+@keyframes landingSubFade {
+  0%, 100% { opacity: 0.7; letter-spacing: 0.01em; }
+  50%       { opacity: 1;   letter-spacing: 0.03em; }
+}
+
+/* Ripple glow around each character card on hover */
+.btn-friend-img::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.btn-friend-img:nth-child(1)::after {
+  box-shadow: 0 0 0 4px rgba(251,191,36,0.4), 0 0 40px 12px rgba(251,191,36,0.25);
+}
+.btn-friend-img:nth-child(2)::after {
+  box-shadow: 0 0 0 4px rgba(96,165,250,0.4), 0 0 40px 12px rgba(96,165,250,0.25);
+}
+.btn-friend-img:hover::after { opacity: 1; }
+
+/* Floating emojis on landing — longer drift + slight rotation wiggle */
+.float-el {
+  animation: floatUpEnhanced 7s ease-in-out infinite;
+}
+@keyframes floatUpEnhanced {
+  0%   { transform: translateY(0)     rotate(0deg)   scale(0.9); opacity: 0.35; }
+  25%  { transform: translateY(-28px) rotate(-8deg)  scale(1.05); opacity: 0.65; }
+  60%  { transform: translateY(-65px) rotate(12deg)  scale(0.97); opacity: 0.45; }
+  100% { transform: translateY(-110px) rotate(25deg) scale(0.8);  opacity: 0; }
+}
+
+/* ──────────────────────────────────────────
+   PASSWORD CARDS — orbiting ring
+   ────────────────────────────────────────── */
+.pw-card::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 31px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+.marco-card::before {
+  background: conic-gradient(
+    from 0deg, rgba(251,191,36,0) 0%, rgba(251,191,36,0.7) 25%,
+    rgba(249,115,22,0.8) 50%, rgba(251,191,36,0.7) 75%, rgba(251,191,36,0) 100%
+  );
+  animation: orbitRing 3s linear infinite;
+}
+.ran-card::before {
+  background: conic-gradient(
+    from 0deg, rgba(96,165,250,0) 0%, rgba(96,165,250,0.7) 25%,
+    rgba(147,197,253,0.8) 50%, rgba(96,165,250,0.7) 75%, rgba(96,165,250,0) 100%
+  );
+  animation: orbitRing 3s linear infinite;
+}
+.pw-card:focus-within::before { opacity: 1; }
+
+@keyframes orbitRing {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Input focus shimmer */
+.marco-theme .pw-input:focus {
+  background: linear-gradient(135deg, #fffbeb, #fff);
+}
+.ran-theme .pw-input:focus {
+  background: linear-gradient(135deg, #eff6ff, #fff);
+}
+
+/* Enter button press flash */
+.btn-enter:active {
+  filter: brightness(1.25);
+}
+
+/* ──────────────────────────────────────────
+   AUTUMN THEME — more saturated leaf shadows
+   ────────────────────────────────────────── */
+.autumn-leaf {
+  filter: drop-shadow(0 3px 8px rgba(124,45,18,0.28)) saturate(1.3);
+}
+
+/* Extra warm glow overlay pulse */
+.autumn-glow {
+  animation: glowPulseEnhanced 6s ease-in-out infinite;
+}
+@keyframes glowPulseEnhanced {
+  0%, 100% { opacity: 0.65; transform: scale(1); }
+  50%       { opacity: 1;    transform: scale(1.03); }
+}
+
+/* Sun — add a second slow rotation halo */
+.sun-deco::before {
+  content: '';
+  position: absolute;
+  inset: -28px;
+  border-radius: 50%;
+  border: 2px solid rgba(252,211,77,0.22);
+  box-shadow: 0 0 0 12px rgba(251,191,36,0.08), 0 0 0 28px rgba(249,115,22,0.05);
+  animation: sunHaloSpin 18s linear infinite;
+}
+@keyframes sunHaloSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ──────────────────────────────────────────
+   STARRY NIGHT THEME — enhanced star glow
+   ────────────────────────────────────────── */
+.twinkle-star {
+  box-shadow: 0 0 6px 2px rgba(255,255,255,0.7),
+              0 0 14px 5px rgba(199,210,254,0.35);
+}
+
+/* Moon — dreamy color-shift halo */
+.moon-glow::before {
+  animation: moonCrater1 12s ease-in-out infinite;
+}
+.moon-glow::after {
+  animation: moonCrater2 15s ease-in-out infinite;
+}
+@keyframes moonCrater1 {
+  0%, 100% { transform: scale(1) translate(0,0); opacity: 0.45; }
+  50%       { transform: scale(1.1) translate(2px,-2px); opacity: 0.65; }
+}
+@keyframes moonCrater2 {
+  0%, 100% { transform: scale(1) translate(0,0); opacity: 0.35; }
+  50%       { transform: scale(0.9) translate(-2px,2px); opacity: 0.5; }
+}
+
+/* Shooting stars — longer trail + pink shimmer */
+.star-shoot::after {
+  background: linear-gradient(
+    to left,
+    rgba(255,255,255,1) 0%,
+    rgba(216,180,254,0.85) 20%,
+    rgba(244,114,182,0.65) 50%,
+    rgba(147,197,253,0.35) 80%,
+    transparent 100%
+  );
+  width: 180px;
+  filter: blur(0.5px);
+}
+
+/* ──────────────────────────────────────────
+   LETTER CARDS — depth & warm paper texture
+   ────────────────────────────────────────── */
+
+/* Marco letter — subtle inner corner vignette */
+#letter-marco .letter-card {
+  box-shadow:
+    0 32px 80px rgba(180,83,9,0.22),
+    0 8px 24px rgba(251,191,36,0.25),
+    0 0 0 1.5px rgba(217,119,6,0.25),
+    inset 0 0 80px rgba(253,230,138,0.12),
+    inset 40px 0 60px rgba(253,230,138,0.06),
+    inset -40px 0 60px rgba(253,230,138,0.06);
+}
+
+/* Ran letter — deep ocean reflection */
+.ran-letter {
+  box-shadow:
+    0 24px 70px rgba(96,165,250,0.22),
+    0 0 0 1px rgba(147,197,253,0.28),
+    inset 0 0 60px rgba(59,130,246,0.06),
+    inset 0 -30px 50px rgba(29,78,216,0.08);
+}
+
+/* Wax seal — extra depth ring on hover area */
+.wax-seal:hover {
+  transform: translateX(-50%) scale(1.1) rotate(-5deg);
+  transition: transform 0.3s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* Autumn corner leaves — staggered color shift */
+.autumn-corner.tl { filter: drop-shadow(0 2px 6px rgba(180,83,9,0.35)) hue-rotate(0deg); }
+.autumn-corner.tr { filter: drop-shadow(0 2px 6px rgba(180,83,9,0.35)) hue-rotate(15deg); }
+.autumn-corner.bl { filter: drop-shadow(0 2px 6px rgba(180,83,9,0.35)) hue-rotate(-10deg); }
+.autumn-corner.br { filter: drop-shadow(0 2px 6px rgba(180,83,9,0.35)) hue-rotate(25deg); }
+
+/* ──────────────────────────────────────────
+   MEMORY CARDS — lift + paper shadow depth
+   ────────────────────────────────────────── */
+.mem-card {
+  background: rgba(255,255,255,0.82);
+  transition: transform 0.38s cubic-bezier(.34,1.56,.64,1),
+              box-shadow 0.35s ease,
+              background 0.3s ease;
+}
+.mem-card:hover {
+  background: rgba(255,255,255,0.96);
+}
+
+/* Tape strip shimmer */
+.marco-tape {
+  background: rgba(251,191,36,0.75);
+  box-shadow: 0 1px 4px rgba(180,83,9,0.2);
+}
+.ran-tape {
+  background: rgba(147,197,253,0.85);
+  box-shadow: 0 1px 4px rgba(29,78,216,0.18);
+}
+
+/* Underline glow */
+.marco-underline {
+  box-shadow: 0 2px 8px rgba(251,191,36,0.45);
+}
+.ran-underline {
+  box-shadow: 0 2px 8px rgba(96,165,250,0.4);
+}
+
+/* ──────────────────────────────────────────
+   TICKET STUBS — subtle film-grain overlay
+   ────────────────────────────────────────── */
+.ticket-stub img {
+  image-rendering: auto;
+  filter: contrast(1.04) saturate(1.08);
+}
+.ticket-stub::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+}
+
+/* ──────────────────────────────────────────
+   GOLD MINE CREDITS — nugget glow boost
+   ────────────────────────────────────────── */
+.gold-nugget {
+  filter: drop-shadow(0 0 8px rgba(251,191,36,1)) drop-shadow(0 0 22px rgba(249,115,22,0.7));
+}
+
+/* Ore veins — animated shimmer along path */
+.ore-vein svg path {
+  stroke-dasharray: 800;
+  stroke-dashoffset: 800;
+  animation: veinDraw 4s ease-in-out forwards;
+}
+@keyframes veinDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Pickaxe — extra shadow depth */
+.pickaxe-deco {
+  filter: drop-shadow(0 0 12px rgba(251,191,36,0.9))
+          drop-shadow(2px 2px 6px rgba(0,0,0,0.5));
+}
+
+/* Lantern cord glow */
+.mine-lantern::after {
+  background: linear-gradient(
+    to bottom,
+    rgba(180,90,0,0.8),
+    rgba(251,191,36,0.45),
+    transparent
+  );
+  box-shadow: 0 0 6px rgba(251,191,36,0.4);
+}
+
+/* ──────────────────────────────────────────
+   CREDITS CRAWL — perspective depth lines
+   ────────────────────────────────────────── */
+.credits-stat-row {
+  position: relative;
+  overflow: hidden;
+}
+.credits-stat-row::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+}
+#credits-marco .credits-stat-row::after {
+  background: linear-gradient(90deg, transparent, rgba(251,191,36,0.22), transparent);
+}
+
+/* Continue button pulse */
+.credits-continue {
+  animation: creditsFadeIn 1s ease forwards, btnPulse 2.5s ease-in-out 11s infinite;
+}
+@keyframes btnPulse {
+  0%, 100% { box-shadow: 0 4px 24px rgba(251,191,36,0.4); transform: translateX(-50%) scale(1); }
+  50%       { box-shadow: 0 6px 36px rgba(251,191,36,0.7); transform: translateX(-50%) scale(1.04); }
+}
+#credits-ran .credits-continue {
+  animation: creditsFadeIn 1s ease forwards, btnPulseBlue 2.5s ease-in-out 11s infinite;
+}
+@keyframes btnPulseBlue {
+  0%, 100% { box-shadow: 0 4px 24px rgba(59,130,246,0.4); transform: translateX(-50%) scale(1); }
+  50%       { box-shadow: 0 6px 36px rgba(59,130,246,0.7); transform: translateX(-50%) scale(1.04); }
+}
+
+/* ──────────────────────────────────────────
+   ASTEROID WISH BUTTONS (Ran's letter)
+   ────────────────────────────────────────── */
+.asteroid {
+  filter: drop-shadow(0 0 8px rgba(147,197,253,0.65))
+          drop-shadow(0 0 20px rgba(96,165,250,0.3));
+}
+
+/* ──────────────────────────────────────────
+   FIREFLIES — warmer inner core
+   ────────────────────────────────────────── */
+.firefly {
+  background: radial-gradient(
+    circle,
+    #fffde7 0%,
+    #fef08a 30%,
+    rgba(253,224,71,0.5) 65%,
+    rgba(253,224,71,0) 100%
+  );
+}
+
+/* ──────────────────────────────────────────
+   MAP — back button hover depth
+   ────────────────────────────────────────── */
+.btn-letter-back {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.btn-letter-back:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+/* Leaflet map border glow */
+#leaflet-marco {
+  box-shadow: 0 12px 40px rgba(180,83,9,0.2), 0 0 0 2px rgba(251,191,36,0.25);
+}
+#leaflet-ran {
+  box-shadow: 0 12px 40px rgba(29,78,216,0.2), 0 0 0 2px rgba(96,165,250,0.3);
+}
+
+/* Compass needle glow */
+.compass-needle {
+  filter: drop-shadow(0 0 4px rgba(251,191,36,0.8));
+}
+
+/* ──────────────────────────────────────────
+   PHOTOSTRIP (Ran map) — aged photo look
+   ────────────────────────────────────────── */
+.map-photostrip {
+  background: #fefcf5;
+  filter: drop-shadow(3px 5px 16px rgba(0,0,0,0.45));
+}
+.map-photostrip img {
+  filter: contrast(1.06) saturate(0.92) sepia(0.08);
+  transition: filter 0.4s ease;
+}
+.map-photostrip:hover img {
+  filter: contrast(1.0) saturate(1.1) sepia(0);
+}
+
+/* ──────────────────────────────────────────
+   BOTTLE (Ran credits) — enhanced glow
+   ────────────────────────────────────────── */
+.bottle-wrap {
+  filter: drop-shadow(0 0 18px rgba(120,200,255,0.7))
+          drop-shadow(0 0 40px rgba(80,160,255,0.4));
+}
+.bottle-msg {
+  box-shadow:
+    0 0 50px rgba(96,165,250,0.35),
+    0 20px 60px rgba(0,0,0,0.65),
+    inset 0 1px 0 rgba(147,197,253,0.15);
+}
+
+/* ──────────────────────────────────────────
+   GLOBAL MISC — screen transition polish
+   ────────────────────────────────────────── */
+.screen {
+  transition: opacity 0.55s cubic-bezier(.4,0,.2,1),
+              transform 0.55s cubic-bezier(.4,0,.2,1);
+}
+.screen.hidden {
+  transform: scale(0.97) translateY(6px);
+}
+
+/* Skip / back buttons — hairline underline on hover */
+.credits-skip:hover,
+.btn-back:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ──────────────────────────────────────────
+   LANDING BACKGROUND — animated aurora band
+   ────────────────────────────────────────── */
+#landing::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 40% at 20% 60%, rgba(251,191,36,0.12), transparent),
+              radial-gradient(ellipse 60% 35% at 80% 30%, rgba(96,165,250,0.12), transparent);
+  animation: auroraShift 10s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+.landing-title, .landing-sub, .btn-row {
+  position: relative;
+  z-index: 1;
+}
+@keyframes auroraShift {
+  from { opacity: 0.6; transform: scale(1); }
+  to   { opacity: 1;   transform: scale(1.06); }
+}
